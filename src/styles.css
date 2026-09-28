@@ -1,0 +1,256 @@
+:root {
+  --bg: #fff;
+  --panel: #f4f5f8;
+  --text: #1b1d24;
+  --muted: #7a8090;
+  --line: #e4e6ec;
+  --accent: #3d5afe;
+  --accent2: #8a3ffc;
+  --in: #eef0f5;
+  --err: #e5484d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141519;
+    --panel: #1c1e24;
+    --text: #eceef3;
+    --muted: #8b91a1;
+    --line: #2a2d36;
+    --in: #262932;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font:
+    15px/1.4 system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+input,
+button {
+  font: inherit;
+  color: inherit;
+}
+input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  outline: none;
+}
+input:focus {
+  border-color: var(--accent);
+}
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.muted {
+  color: var(--muted);
+}
+.pad {
+  padding: 16px;
+}
+.error {
+  color: var(--err);
+  font-size: 13px;
+}
+.center {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.card {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  border-radius: 20px;
+  background: var(--panel);
+}
+.card h1 {
+  margin: 0;
+  font-size: 22px;
+}
+.card p {
+  margin: 0;
+}
+details summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+}
+.side {
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.side-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+}
+.link {
+  background: none;
+  color: var(--muted);
+  padding: 4px 8px;
+}
+.new {
+  display: flex;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+.new button {
+  padding: 0 16px;
+}
+.list {
+  overflow: auto;
+  flex: 1;
+}
+.item {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  background: none;
+  color: inherit;
+  border-radius: 0;
+  padding: 10px 16px;
+}
+.item:hover {
+  background: var(--panel);
+}
+.item.active {
+  background: var(--panel);
+}
+.meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.meta small {
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+.head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.msgs {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bubble {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
+}
+.bubble small {
+  align-self: flex-end;
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+.bubble.in {
+  align-self: flex-start;
+  background: var(--in);
+  border-bottom-left-radius: 4px;
+}
+.bubble.out {
+  align-self: flex-end;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-bottom-right-radius: 4px;
+}
+.composer {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+}
+.empty {
+  margin: auto;
+}
+.bar {
+  background: var(--panel);
+  padding: 8px 16px;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+  .side {
+    display: none;
+  }
+  .app:has(.head) .side {
+    display: none;
+  }
+  .bubble {
+    max-width: 85%;
+  }
+}
